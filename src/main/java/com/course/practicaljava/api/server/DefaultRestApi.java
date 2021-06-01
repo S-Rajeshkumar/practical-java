@@ -25,5 +25,10 @@ public class DefaultRestApi {
 	public String time() {
 		return LocalTime.now().toString();
 	}
+	
+	@GetMapping(value = "/test")
+	public String test() {
+		return "This is dummy method for a dummy commit";
+	}
 
 }
