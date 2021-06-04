@@ -1,5 +1,7 @@
 package com.course.practicaljava.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.stereotype.Service;
@@ -25,7 +27,16 @@ public class RandomCarService implements CarService {
 		
 		var firstReleaseDate = RandomDateUtil.generateRandomLocalDate();
 		
-		return new Car(available, brand, color, firstReleaseDate, price, type);
+		int randomCount = ThreadLocalRandom.current().nextInt(ADDITIONAL_FEATURES.size());
+		
+		var additionalFeatures = new ArrayList<String>();
+		
+		for(int i=0; i<randomCount; i++) {
+			additionalFeatures.add(ADDITIONAL_FEATURES.get(i));
+		}
+		
+		return new Car(additionalFeatures, available, brand, color, firstReleaseDate, price, type);
+		
 		
 	}
 

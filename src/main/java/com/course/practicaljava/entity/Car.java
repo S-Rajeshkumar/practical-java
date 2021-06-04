@@ -1,6 +1,7 @@
 package com.course.practicaljava.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Car {
 
@@ -10,19 +11,26 @@ public class Car {
 	private LocalDate firstReleaseDate;
 	private int price;
 	private String type;
+	private List<String> additionalFeatures;
 
 	public Car() {
 		super();
 	}
 
-	public Car(boolean available, String brand, String color, LocalDate firstReleaseDate, int price, String type) {
+	public Car(List<String> additionalFeatures, boolean available, String brand, String color,
+			LocalDate firstReleaseDate, int price, String type) {
 		super();
+		this.additionalFeatures = additionalFeatures;
 		this.available = available;
 		this.brand = brand;
 		this.color = color;
 		this.firstReleaseDate = firstReleaseDate;
 		this.price = price;
 		this.type = type;
+	}
+
+	public List<String> getAdditionalFeatures() {
+		return additionalFeatures;
 	}
 
 	public String getBrand() {
@@ -47,6 +55,10 @@ public class Car {
 
 	public boolean isAvailable() {
 		return available;
+	}
+
+	public void setAdditionalFeatures(List<String> additionalFeatures) {
+		this.additionalFeatures = additionalFeatures;
 	}
 
 	public void setAvailable(boolean available) {
@@ -75,8 +87,9 @@ public class Car {
 
 	@Override
 	public String toString() {
-		return "Car [brand=" + brand + ", color=" + color + ", type=" + type + ", available=" + available + ", price="
-				+ price + ", firstReleaseDate=" + firstReleaseDate + "]";
+		return "Car [available=" + available + ", brand=" + brand + ", color=" + color + ", firstReleaseDate="
+				+ firstReleaseDate + ", price=" + price + ", type=" + type + ", additionalFeatures="
+				+ additionalFeatures + "]";
 	}
 
 }
