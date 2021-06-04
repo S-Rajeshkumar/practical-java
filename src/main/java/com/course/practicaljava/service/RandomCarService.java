@@ -5,6 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import org.springframework.stereotype.Service;
 
 import com.course.practicaljava.entity.Car;
+import com.course.practicaljava.util.RandomDateUtil;
 
 @Service
 public class RandomCarService implements CarService {
@@ -18,7 +19,14 @@ public class RandomCarService implements CarService {
 		
 		var type = TYPES.get(ThreadLocalRandom.current().nextInt(0, TYPES.size()));
 		
-		return new Car(brand, color, type);
+		var available = ThreadLocalRandom.current().nextBoolean();
+		
+		var price = ThreadLocalRandom.current().nextInt(5000, 12001);
+		
+		var firstReleaseDate = RandomDateUtil.generateRandomLocalDate();
+		
+		return new Car(available, brand, color, firstReleaseDate, price, type);
+		
 	}
 
 }
