@@ -14,6 +14,10 @@ public interface CarService {
 	
 	List<String> ADDITIONAL_FEATURES = List.of("GPS", "Alarm", "Sunroof", "Touchpad", "MediaPlayer");
 	
+	List<String> FUELTYPE = List.of("Petrol", "Diesel", "Electric", "Hybrid");
+	
+	List<String> TIRE_MANUFACTURER = List.of("MRF", "CEAT", "APOLLO");
+	
 	Car generateCar();
 	
 }

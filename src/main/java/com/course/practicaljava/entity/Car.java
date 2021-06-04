@@ -5,28 +5,41 @@ import java.util.List;
 
 public class Car {
 
-	private boolean available;
 	private String brand;
 	private String color;
-	private LocalDate firstReleaseDate;
-	private int price;
 	private String type;
+	private int price;
+	private boolean available;
+	private LocalDate firstReleaseDate;
 	private List<String> additionalFeatures;
+	private Engine engine;
+	private List<Tire> tires;
 
 	public Car() {
 		super();
 	}
 
-	public Car(List<String> additionalFeatures, boolean available, String brand, String color,
-			LocalDate firstReleaseDate, int price, String type) {
+	public Car(String brand, String color, String type) {
 		super();
-		this.additionalFeatures = additionalFeatures;
-		this.available = available;
 		this.brand = brand;
 		this.color = color;
-		this.firstReleaseDate = firstReleaseDate;
-		this.price = price;
 		this.type = type;
+	}
+
+	public Engine getEngine() {
+		return engine;
+	}
+
+	public void setEngine(Engine engine) {
+		this.engine = engine;
+	}
+
+	public List<Tire> getTires() {
+		return tires;
+	}
+
+	public void setTires(List<Tire> tires) {
+		this.tires = tires;
 	}
 
 	public List<String> getAdditionalFeatures() {
@@ -87,9 +100,9 @@ public class Car {
 
 	@Override
 	public String toString() {
-		return "Car [available=" + available + ", brand=" + brand + ", color=" + color + ", firstReleaseDate="
-				+ firstReleaseDate + ", price=" + price + ", type=" + type + ", additionalFeatures="
-				+ additionalFeatures + "]";
+		return "Car [brand=" + brand + ", color=" + color + ", type=" + type + ", price=" + price + ", available="
+				+ available + ", firstReleaseDate=" + firstReleaseDate + ", additionalFeatures=" + additionalFeatures
+				+ ", engine=" + engine + ", tires=" + tires + "]";
 	}
 
 }

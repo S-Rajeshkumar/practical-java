@@ -7,6 +7,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import org.springframework.stereotype.Service;
 
 import com.course.practicaljava.entity.Car;
+import com.course.practicaljava.entity.Engine;
+import com.course.practicaljava.entity.Tire;
 import com.course.practicaljava.util.RandomDateUtil;
 
 @Service
@@ -35,8 +37,33 @@ public class RandomCarService implements CarService {
 			additionalFeatures.add(ADDITIONAL_FEATURES.get(i));
 		}
 		
-		return new Car(additionalFeatures, available, brand, color, firstReleaseDate, price, type);
+		var fuelType = FUELTYPE.get(ThreadLocalRandom.current().nextInt(0, FUELTYPE.size()));
 		
+		var horsePower = ThreadLocalRandom.current().nextInt(120, 241);
+		
+		var engine = new Engine(fuelType, horsePower);
+		
+		List<Tire> tires = new ArrayList<Tire>();
+		for(int i=0; i<3; i++) {
+			
+			var tireManufacturer = TIRE_MANUFACTURER.get(ThreadLocalRandom.current().nextInt(TIRE_MANUFACTURER.size()));
+			var tirePrice = ThreadLocalRandom.current().nextInt(200, 501);
+			var size = ThreadLocalRandom.current().nextInt(15, 18);
+			
+			var tire = new Tire(tireManufacturer, size, tirePrice);
+			
+			tires.add(tire);
+		}
+		
+		var result = new Car(brand, color, type);
+		result.setAvailable(available);
+		result.setPrice(price);
+		result.setFirstReleaseDate(firstReleaseDate);
+		result.setAdditionalFeatures(additionalFeatures);
+		result.setEngine(engine);
+		result.setTires(tires);
+		
+		return result;
 		
 	}
 
