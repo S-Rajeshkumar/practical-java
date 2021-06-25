@@ -3,14 +3,29 @@ package com.course.practicaljava.entity;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.DateFormat;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Document(indexName = "practical-java")
 public class Car {
 
+	@Id
+	private String id;
 	private String brand;
 	private String color;
 	private String type;
 	private int price;
 	private boolean available;
+	
+	@Field(type = FieldType.Date, format = DateFormat.date)
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Kolkata")
 	private LocalDate firstReleaseDate;
+	
 	private List<String> additionalFeatures;
 	private Engine engine;
 	private List<Tire> tires;
@@ -26,22 +41,6 @@ public class Car {
 		this.type = type;
 	}
 
-	public Engine getEngine() {
-		return engine;
-	}
-
-	public void setEngine(Engine engine) {
-		this.engine = engine;
-	}
-
-	public List<Tire> getTires() {
-		return tires;
-	}
-
-	public void setTires(List<Tire> tires) {
-		this.tires = tires;
-	}
-
 	public List<String> getAdditionalFeatures() {
 		return additionalFeatures;
 	}
@@ -54,12 +53,24 @@ public class Car {
 		return color;
 	}
 
+	public Engine getEngine() {
+		return engine;
+	}
+
 	public LocalDate getFirstReleaseDate() {
 		return firstReleaseDate;
 	}
 
+	public String getId() {
+		return id;
+	}
+
 	public int getPrice() {
 		return price;
+	}
+
+	public List<Tire> getTires() {
+		return tires;
 	}
 
 	public String getType() {
@@ -86,12 +97,24 @@ public class Car {
 		this.color = color;
 	}
 
+	public void setEngine(Engine engine) {
+		this.engine = engine;
+	}
+
 	public void setFirstReleaseDate(LocalDate firstReleaseDate) {
 		this.firstReleaseDate = firstReleaseDate;
 	}
 
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+	public void setTires(List<Tire> tires) {
+		this.tires = tires;
 	}
 
 	public void setType(String type) {
